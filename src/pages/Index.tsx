@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight, Github, Linkedin, Mail, Code2, Sparkles, Server, Database,
   Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal
 } from "lucide-react";
 import portrait from "@/assets/mal-portrait.jpg";
+import FloatingNav from "@/components/FloatingNav";
+import { projects } from "@/data/projects";
 
 const stack = [
   "TypeScript", "React", "Next.js", "Node.js", "Python", "PostgreSQL",
