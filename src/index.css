@@ -2,223 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design system with --color-* OKLCH tokens for Lovable theme compatibility */
-
 @layer base {
   :root {
-    --font-heading-weight: 600;
-    --font-body-weight: 400;
+    /* Noir & Gold — Mal Fullstack Developer Portfolio */
+    --color-background: oklch(13% 0 0);         /* #0d0d0d */
+    --color-foreground: oklch(96% 0.01 85);     /* warm off-white */
 
-    /* Core theme tokens (overridden by Lovable style packs) */
-    --color-background: oklch(97.4% 0.008 78.3); /* hsl(36,44%,96%) warm cream */
-    --color-foreground: oklch(30.1% 0.000 0); /* hsl(0,0%,18%) near-black */
+    --color-card: oklch(17% 0 0);               /* #1a1a1a */
+    --color-card-foreground: oklch(96% 0.01 85);
 
-    --color-card: oklch(95.8% 0.011 73.1); /* hsl(33,40%,94%) */
-    --color-card-foreground: oklch(30.1% 0.000 0);
+    --color-popover: oklch(13% 0 0);
+    --color-popover-foreground: oklch(96% 0.01 85);
 
-    --color-popover: oklch(97.4% 0.008 78.3);
-    --color-popover-foreground: oklch(30.1% 0.000 0);
+    --color-primary: oklch(78% 0.12 85);        /* #c9a84c gold */
+    --color-primary-foreground: oklch(13% 0 0);
 
-    --color-primary: oklch(30.1% 0.000 0); /* hsl(0,0%,18%) */
-    --color-primary-foreground: oklch(97.4% 0.008 78.3);
+    --color-secondary: oklch(22% 0 0);
+    --color-secondary-foreground: oklch(96% 0.01 85);
 
-    --color-secondary: oklch(77.1% 0.041 57.6); /* hsl(25,30%,70%) warm tan */
-    --color-secondary-foreground: oklch(30.1% 0.000 0);
+    --color-muted: oklch(20% 0 0);
+    --color-muted-foreground: oklch(65% 0.015 85);
 
-    --color-muted: oklch(91.4% 0.016 73.1); /* hsl(33,30%,88%) */
-    --color-muted-foreground: oklch(51.0% 0.000 0); /* hsl(0,0%,40%) */
+    --color-accent: oklch(88% 0.10 88);         /* #f0d78c soft gold */
+    --color-accent-foreground: oklch(13% 0 0);
 
-    --color-accent: oklch(63.7% 0.075 154.6); /* hsl(140,20%,50%) muted green */
-    --color-accent-foreground: oklch(97.4% 0.008 78.3);
+    --color-destructive: oklch(60% 0.21 25);
+    --color-destructive-foreground: oklch(96% 0.01 85);
 
-    --color-destructive: oklch(63.6% 0.208 25.4); /* hsl(0,84%,60%) */
-    --color-destructive-foreground: oklch(97.4% 0.008 78.3);
-
-    --color-border: oklch(89.1% 0.017 73.1); /* hsl(33,25%,85%) */
-    --color-input: oklch(89.1% 0.017 73.1);
-    --color-ring: oklch(30.1% 0.000 0);
+    --color-border: oklch(25% 0 0);
+    --color-input: oklch(22% 0 0);
+    --color-ring: oklch(78% 0.12 85);
 
     --radius: 1rem;
 
-    /* Template-specific tokens (not overridden by theme system) */
-    --tag-financing: oklch(78% 0.06 250);
-    --tag-lifestyle: oklch(73% 0.05 155);
-    --tag-community: oklch(62% 0.07 55);
-    --tag-wellness: oklch(76% 0.06 310);
-    --tag-travel: oklch(74% 0.06 220);
-    --tag-creativity: oklch(77% 0.07 350);
-    --tag-growth: oklch(74% 0.08 90);
+    --gold: #c9a84c;
+    --gold-soft: #f0d78c;
+    --noir: #0d0d0d;
+    --noir-elev: #1a1a1a;
 
-    --cream: oklch(92% 0.015 85);
-    --cream-foreground: oklch(25% 0 0);
-    --surface-elevated: oklch(98% 0.012 80);
-    --shadow-soft: oklch(0% 0 0);
+    --grad-gold: linear-gradient(135deg, #c9a84c 0%, #f0d78c 100%);
+    --grad-noir: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    --shadow-gold: 0 20px 60px -20px rgba(201, 168, 76, 0.35);
+    --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
   }
 
-  .dark {
-    --color-background: oklch(21.6% 0.000 0); /* hsl(0,0%,10%) */
-    --color-foreground: oklch(97.4% 0.008 78.3);
-
-    --color-card: oklch(25.9% 0.000 0); /* hsl(0,0%,14%) */
-    --color-card-foreground: oklch(97.4% 0.008 78.3);
-
-    --color-popover: oklch(21.6% 0.000 0);
-    --color-popover-foreground: oklch(97.4% 0.008 78.3);
-
-    --color-primary: oklch(97.4% 0.008 78.3);
-    --color-primary-foreground: oklch(30.1% 0.000 0);
-
-    --color-secondary: oklch(42.2% 0.024 57.6); /* hsl(25,15%,30%) */
-    --color-secondary-foreground: oklch(97.4% 0.008 78.3);
-
-    --color-muted: oklch(32.1% 0.000 0); /* hsl(0,0%,20%) */
-    --color-muted-foreground: oklch(68.3% 0.000 0); /* hsl(0,0%,60%) */
-
-    --color-accent: oklch(59.0% 0.069 154.6); /* hsl(140,20%,45%) */
-    --color-accent-foreground: oklch(97.4% 0.008 78.3);
-
-    --color-destructive: oklch(56.1% 0.195 26.2); /* hsl(0,62%,50%) */
-    --color-destructive-foreground: oklch(97.4% 0.008 78.3);
-
-    --color-border: oklch(32.1% 0.000 0);
-    --color-input: oklch(32.1% 0.000 0);
-    --color-ring: oklch(97.4% 0.008 78.3);
-
-    /* Dark mode tag colors */
-    --tag-financing: oklch(50% 0.05 250);
-    --tag-lifestyle: oklch(46% 0.04 155);
-    --tag-community: oklch(46% 0.05 55);
-    --tag-wellness: oklch(50% 0.05 310);
-    --tag-travel: oklch(50% 0.05 220);
-    --tag-creativity: oklch(50% 0.06 350);
-    --tag-growth: oklch(50% 0.06 90);
-
-    --cream: oklch(32% 0.008 85);
-    --cream-foreground: oklch(96.5% 0.015 80);
-    --surface-elevated: oklch(24% 0 0);
-    --shadow-soft: oklch(0% 0 0);
-  }
+  .dark { color-scheme: dark; }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-body, Inter), system-ui, sans-serif;
-    font-weight: var(--font-body-weight);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-weight: 400;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(201,168,76,0.06), transparent 60%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading, Merriweather), Georgia, serif;
-    font-weight: var(--font-heading-weight);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
     @apply tracking-tight;
   }
 
-  a, button, input, label {
-    font-family: var(--font-heading, Merriweather), Georgia, serif;
-  }
+  ::selection { background: var(--gold); color: var(--noir); }
 }
 
 @layer utilities {
-  .card-hover {
-    @apply transition-all duration-500 hover:scale-[1.02];
-    box-shadow: 0 4px 20px -4px oklch(0% 0 0 / 0.1);
+  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .font-body { font-family: 'Work Sans', system-ui, sans-serif; }
+
+  .text-gold { color: var(--gold); }
+  .bg-gold { background-color: var(--gold); }
+  .border-gold { border-color: var(--gold); }
+
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #f0d78c 0%, #c9a84c 60%, #8a6f2a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  .card-hover:hover {
-    box-shadow: 0 20px 40px -10px oklch(0% 0 0 / 0.15);
+  .bento-card {
+    @apply relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500;
+    box-shadow: var(--shadow-card);
+  }
+  .bento-card:hover {
+    border-color: rgba(201,168,76,0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
   }
 
-  .pill-nav {
-    @apply rounded-full backdrop-blur-lg border;
-    background-color: color-mix(in oklch, var(--color-background) 85%, transparent);
-    border-color: color-mix(in oklch, var(--color-border) 50%, transparent);
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  .floating-button {
-    @apply w-12 h-12 rounded-full bg-card backdrop-blur-sm flex items-center justify-center text-card-foreground hover:bg-card hover:scale-110 transition-all duration-300;
-    box-shadow: 0 4px 12px -2px oklch(0% 0 0 / 0.15);
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   }
 
-  /* Animation keyframes */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
+  .animate-marquee { animation: marquee 30s linear infinite; }
 
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
+    50% { box-shadow: 0 0 0 12px rgba(201,168,76,0); }
   }
+  .pulse-gold { animation: pulse-gold 2s ease-in-out infinite; }
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
-  }
-
-  .animate-slide-down {
-    animation: slideDown 0.6s ease-out;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out;
-  }
-
-  /* Stagger animations */
-  .stagger-1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
-  .stagger-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
-  .stagger-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
-  .stagger-4 { animation-delay: 0.4s; opacity: 0; animation-fill-mode: forwards; }
-  .stagger-5 { animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards; }
-  .stagger-6 { animation-delay: 0.6s; opacity: 0; animation-fill-mode: forwards; }
-
-  .tag-financing { @apply bg-[var(--tag-financing)] text-primary; }
-  .tag-lifestyle { @apply bg-[var(--tag-lifestyle)] text-primary; }
-  .tag-community { @apply bg-[var(--tag-community)] text-primary; }
-  .tag-wellness { @apply bg-[var(--tag-wellness)] text-primary; }
-  .tag-travel { @apply bg-[var(--tag-travel)] text-primary; }
-  .tag-creativity { @apply bg-[var(--tag-creativity)] text-primary; }
-  .tag-growth { @apply bg-[var(--tag-growth)] text-primary; }
+  .animate-fade-up { animation: fadeUp 0.7s ease-out both; }
 }
