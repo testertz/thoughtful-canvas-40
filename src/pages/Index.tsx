@@ -43,27 +43,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* NAV */}
-      <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border/40">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 font-mono font-bold text-sm">
-            <span className="w-2 h-2 rounded-full bg-gold pulse-gold" />
-            <span>mal<span className="text-gold">.</span>dev</span>
-          </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-mono text-muted-foreground">
-            <a href="#work" className="hover:text-gold transition">work</a>
-            <a href="#services" className="hover:text-gold transition">services</a>
-            <a href="#about" className="hover:text-gold transition">about</a>
-            <a href="#contact" className="hover:text-gold transition">contact</a>
-          </nav>
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-gold text-primary-foreground px-4 py-2 text-sm font-mono font-medium hover:bg-[var(--gold-soft)] transition"
-          >
-            Hire me <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition" />
-          </a>
-        </div>
-      </header>
+      <FloatingNav />
 
       {/* HERO */}
       <section id="top" className="relative pt-32 pb-20 overflow-hidden">
