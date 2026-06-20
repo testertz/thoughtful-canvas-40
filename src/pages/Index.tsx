@@ -1,46 +1,17 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight, Github, Linkedin, Mail, Code2, Sparkles, Server, Database,
   Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal
 } from "lucide-react";
 import portrait from "@/assets/mal-portrait.jpg";
+import FloatingNav from "@/components/FloatingNav";
+import { projects } from "@/data/projects";
 
 const stack = [
   "TypeScript", "React", "Next.js", "Node.js", "Python", "PostgreSQL",
   "Tailwind", "AWS", "Docker", "Redis", "GraphQL", "tRPC", "Prisma", "Stripe"
-];
-
-const projects = [
-  {
-    name: "Nimbus Analytics",
-    tag: "SaaS · Realtime",
-    desc: "Real-time product analytics dashboard processing 12M events/day with sub-100ms queries.",
-    stack: ["Next.js", "ClickHouse", "Redis", "tRPC"],
-    metric: "12M events/day",
-    accent: "from-yellow-200/20 to-yellow-600/10",
-  },
-  {
-    name: "Helix Commerce",
-    tag: "E-commerce",
-    desc: "Headless storefront for a fashion brand. +38% conversion, 98 Lighthouse score.",
-    stack: ["Remix", "Shopify", "Stripe", "Edge"],
-    metric: "+38% CVR",
-  },
-  {
-    name: "Forge AI",
-    tag: "AI · Tooling",
-    desc: "AI-powered code review bot integrated with GitHub. Catches bugs before humans do.",
-    stack: ["Python", "OpenAI", "FastAPI", "Postgres"],
-    metric: "10k+ PRs reviewed",
-  },
-  {
-    name: "Atlas Maps",
-    tag: "Mobile · Geo",
-    desc: "Offline-first travel mapping app with custom vector tiles and route planning.",
-    stack: ["React Native", "Mapbox", "SQLite"],
-    metric: "4.8★ App Store",
-  },
 ];
 
 const services = [
@@ -72,27 +43,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* NAV */}
-      <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border/40">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 font-mono font-bold text-sm">
-            <span className="w-2 h-2 rounded-full bg-gold pulse-gold" />
-            <span>mal<span className="text-gold">.</span>dev</span>
-          </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-mono text-muted-foreground">
-            <a href="#work" className="hover:text-gold transition">work</a>
-            <a href="#services" className="hover:text-gold transition">services</a>
-            <a href="#about" className="hover:text-gold transition">about</a>
-            <a href="#contact" className="hover:text-gold transition">contact</a>
-          </nav>
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-gold text-primary-foreground px-4 py-2 text-sm font-mono font-medium hover:bg-[var(--gold-soft)] transition"
-          >
-            Hire me <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition" />
-          </a>
-        </div>
-      </header>
+      <FloatingNav />
 
       {/* HERO */}
       <section id="top" className="relative pt-32 pb-20 overflow-hidden">
@@ -245,34 +196,42 @@ export default function Index() {
 
         <div className="grid md:grid-cols-2 gap-5">
           {projects.map((p, i) => (
-            <motion.a
-              key={p.name}
-              href="#contact"
+            <motion.div
+              key={p.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="bento-card group p-7 block min-h-[280px] flex flex-col justify-between"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs text-gold uppercase tracking-wider mb-2">{p.tag}</p>
-                  <h3 className="font-mono text-2xl md:text-3xl font-bold">{p.name}</h3>
+              <Link
+                to={`/work/${p.slug}`}
+                className="bento-card group p-7 block min-h-[320px] flex flex-col justify-between h-full overflow-hidden relative"
+              >
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-700 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${p.cover})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/90 to-card/40 pointer-events-none" />
+                <div className="relative flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-xs text-gold uppercase tracking-wider mb-2">{p.tag}</p>
+                    <h3 className="font-mono text-2xl md:text-3xl font-bold">{p.name}</h3>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
                 </div>
-                <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-              </div>
-              <p className="font-body text-muted-foreground leading-relaxed my-6">{p.desc}</p>
-              <div className="flex items-center justify-between gap-4 flex-wrap">
-                <div className="flex flex-wrap gap-2">
-                  {p.stack.map(s => (
-                    <span key={s} className="font-mono text-[11px] px-2 py-1 rounded-md border border-border text-muted-foreground">
-                      {s}
-                    </span>
-                  ))}
+                <p className="relative font-body text-muted-foreground leading-relaxed my-6">{p.desc}</p>
+                <div className="relative flex items-center justify-between gap-4 flex-wrap">
+                  <div className="flex flex-wrap gap-2">
+                    {p.stack.slice(0, 4).map(s => (
+                      <span key={s} className="font-mono text-[11px] px-2 py-1 rounded-md border border-border text-muted-foreground">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="font-mono text-xs text-gold">{p.metric}</p>
                 </div>
-                <p className="font-mono text-xs text-gold">{p.metric}</p>
-              </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </section>
