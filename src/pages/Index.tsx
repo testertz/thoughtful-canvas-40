@@ -14,38 +14,6 @@ const stack = [
   "Tailwind", "AWS", "Docker", "Redis", "GraphQL", "tRPC", "Prisma", "Stripe"
 ];
 
-const projects = [
-  {
-    name: "Nimbus Analytics",
-    tag: "SaaS · Realtime",
-    desc: "Real-time product analytics dashboard processing 12M events/day with sub-100ms queries.",
-    stack: ["Next.js", "ClickHouse", "Redis", "tRPC"],
-    metric: "12M events/day",
-    accent: "from-yellow-200/20 to-yellow-600/10",
-  },
-  {
-    name: "Helix Commerce",
-    tag: "E-commerce",
-    desc: "Headless storefront for a fashion brand. +38% conversion, 98 Lighthouse score.",
-    stack: ["Remix", "Shopify", "Stripe", "Edge"],
-    metric: "+38% CVR",
-  },
-  {
-    name: "Forge AI",
-    tag: "AI · Tooling",
-    desc: "AI-powered code review bot integrated with GitHub. Catches bugs before humans do.",
-    stack: ["Python", "OpenAI", "FastAPI", "Postgres"],
-    metric: "10k+ PRs reviewed",
-  },
-  {
-    name: "Atlas Maps",
-    tag: "Mobile · Geo",
-    desc: "Offline-first travel mapping app with custom vector tiles and route planning.",
-    stack: ["React Native", "Mapbox", "SQLite"],
-    metric: "4.8★ App Store",
-  },
-];
-
 const services = [
   { icon: Globe, title: "Web Applications", desc: "Production-grade React & Next.js apps with elegant UX." },
   { icon: Server, title: "Backend & APIs", desc: "Scalable Node, Python and Go services. REST, GraphQL, tRPC." },
