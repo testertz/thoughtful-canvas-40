@@ -196,34 +196,42 @@ export default function Index() {
 
         <div className="grid md:grid-cols-2 gap-5">
           {projects.map((p, i) => (
-            <motion.a
-              key={p.name}
-              href="#contact"
+            <motion.div
+              key={p.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="bento-card group p-7 block min-h-[280px] flex flex-col justify-between"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs text-gold uppercase tracking-wider mb-2">{p.tag}</p>
-                  <h3 className="font-mono text-2xl md:text-3xl font-bold">{p.name}</h3>
+              <Link
+                to={`/work/${p.slug}`}
+                className="bento-card group p-7 block min-h-[320px] flex flex-col justify-between h-full overflow-hidden relative"
+              >
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-700 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${p.cover})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/90 to-card/40 pointer-events-none" />
+                <div className="relative flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-xs text-gold uppercase tracking-wider mb-2">{p.tag}</p>
+                    <h3 className="font-mono text-2xl md:text-3xl font-bold">{p.name}</h3>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
                 </div>
-                <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-              </div>
-              <p className="font-body text-muted-foreground leading-relaxed my-6">{p.desc}</p>
-              <div className="flex items-center justify-between gap-4 flex-wrap">
-                <div className="flex flex-wrap gap-2">
-                  {p.stack.map(s => (
-                    <span key={s} className="font-mono text-[11px] px-2 py-1 rounded-md border border-border text-muted-foreground">
-                      {s}
-                    </span>
-                  ))}
+                <p className="relative font-body text-muted-foreground leading-relaxed my-6">{p.desc}</p>
+                <div className="relative flex items-center justify-between gap-4 flex-wrap">
+                  <div className="flex flex-wrap gap-2">
+                    {p.stack.slice(0, 4).map(s => (
+                      <span key={s} className="font-mono text-[11px] px-2 py-1 rounded-md border border-border text-muted-foreground">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="font-mono text-xs text-gold">{p.metric}</p>
                 </div>
-                <p className="font-mono text-xs text-gold">{p.metric}</p>
-              </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </section>
