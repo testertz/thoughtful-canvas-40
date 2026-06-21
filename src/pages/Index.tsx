@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import {
   ArrowUpRight, Github, Linkedin, Mail, Code2, Sparkles, Server, Database,
   Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal,
   Layers, Palette, Rocket, Search, PenTool, Wrench, CheckCircle2, ArrowRight,
-  FileCode, Box, Cloud, GitBranch, Layout
+  FileCode, Box, Cloud, GitBranch, Layout, MessageCircle, Clock, Zap, User, AtSign
 } from "lucide-react";
 import portrait from "@/assets/mal-portrait.jpg";
 import FloatingNav from "@/components/FloatingNav";
