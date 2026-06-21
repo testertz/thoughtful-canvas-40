@@ -602,56 +602,64 @@ export default function Index() {
 
       {/* CONTACT */}
       <section id="contact" className="py-32 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> let's build something
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">07 — contact</p>
+        </div>
+
         <div className="grid md:grid-cols-12 gap-5">
-          <div className="md:col-span-7 bento-card p-10 md:p-14 relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold/10 blur-3xl" />
-            <p className="font-mono text-xs text-gold mb-4">05 — let's build something</p>
-            <h2 className="font-mono text-4xl md:text-6xl font-bold leading-[1] tracking-tighter">
-              Have a project<br />in mind<span className="text-gold">?</span>
-            </h2>
-            <p className="font-body text-lg text-muted-foreground mt-6 max-w-md">
-              Whether it's a product, a feature, or a full team — I'd love to hear it.
-              I reply within 24 hours.
-            </p>
+          {/* Intro + WhatsApp + socials */}
+          <div className="md:col-span-5 flex flex-col gap-5">
+            <div className="bento-card p-8 md:p-10 relative overflow-hidden">
+              <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold/10 blur-3xl" />
+              <p className="font-mono text-xs text-gold mb-4">say hi</p>
+              <h3 className="font-mono text-3xl md:text-4xl font-bold leading-[1.05] tracking-tighter">
+                Have a project<br />in mind<span className="text-gold">?</span>
+              </h3>
+              <p className="font-body text-muted-foreground mt-5 leading-relaxed">
+                Drop a message via the form, ping me on WhatsApp, or send an email. I reply within 24 hours.
+              </p>
+            </div>
+
             <a
-              href="mailto:hello@mal.dev"
-              className="inline-flex items-center gap-2 mt-8 rounded-full bg-gold text-primary-foreground px-6 py-3 font-mono font-medium hover:bg-[var(--gold-soft)] transition"
+              href="https://wa.me/15551234567?text=Hi%20Mal%2C%20I%27d%20love%20to%20talk%20about%20a%20project."
+              target="_blank"
+              rel="noreferrer"
+              className="bento-card p-6 flex items-center justify-between group bg-gradient-to-br from-gold/10 to-transparent border-gold/30"
             >
-              hello@mal.dev <Send className="w-4 h-4" />
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-lg bg-gold/15 border border-gold/30 flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-gold" />
+                </div>
+                <div>
+                  <p className="font-mono font-bold">WhatsApp</p>
+                  <p className="font-mono text-xs text-muted-foreground">fastest reply · +1 (555) 123-4567</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
             </a>
+
+            <div className="grid grid-cols-3 gap-3">
+              <a href="mailto:hello@mal.dev" className="bento-card p-4 flex flex-col items-center justify-center gap-2 group">
+                <Mail className="w-5 h-5 text-gold" />
+                <span className="font-mono text-[11px] text-muted-foreground group-hover:text-foreground transition">Email</span>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="bento-card p-4 flex flex-col items-center justify-center gap-2 group">
+                <Github className="w-5 h-5 text-gold" />
+                <span className="font-mono text-[11px] text-muted-foreground group-hover:text-foreground transition">GitHub</span>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="bento-card p-4 flex flex-col items-center justify-center gap-2 group">
+                <Linkedin className="w-5 h-5 text-gold" />
+                <span className="font-mono text-[11px] text-muted-foreground group-hover:text-foreground transition">LinkedIn</span>
+              </a>
+            </div>
           </div>
 
-          <div className="md:col-span-5 flex flex-col gap-5">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="bento-card p-6 flex items-center justify-between group">
-              <div className="flex items-center gap-4">
-                <Github className="w-6 h-6 text-gold" />
-                <div>
-                  <p className="font-mono font-bold">GitHub</p>
-                  <p className="font-mono text-xs text-muted-foreground">@mal</p>
-                </div>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="bento-card p-6 flex items-center justify-between group">
-              <div className="flex items-center gap-4">
-                <Linkedin className="w-6 h-6 text-gold" />
-                <div>
-                  <p className="font-mono font-bold">LinkedIn</p>
-                  <p className="font-mono text-xs text-muted-foreground">/in/mal</p>
-                </div>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-            </a>
-            <a href="mailto:hello@mal.dev" className="bento-card p-6 flex items-center justify-between group">
-              <div className="flex items-center gap-4">
-                <Mail className="w-6 h-6 text-gold" />
-                <div>
-                  <p className="font-mono font-bold">Email</p>
-                  <p className="font-mono text-xs text-muted-foreground">hello@mal.dev</p>
-                </div>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-            </a>
+          {/* Form */}
+          <div className="md:col-span-7 bento-card p-8 md:p-10">
+            <ContactForm />
           </div>
         </div>
       </section>
