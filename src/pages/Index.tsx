@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight, Github, Linkedin, Mail, Code2, Sparkles, Server, Database,
-  Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal
+  Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal,
+  Layers, Palette, Rocket, Search, PenTool, Wrench, CheckCircle2, ArrowRight,
+  FileCode, Box, Cloud, GitBranch, Layout
 } from "lucide-react";
 import portrait from "@/assets/mal-portrait.jpg";
 import FloatingNav from "@/components/FloatingNav";
+import VoiceTestimonial from "@/components/VoiceTestimonial";
 import { projects } from "@/data/projects";
 
 const stack = [
@@ -26,6 +29,101 @@ const timeline = [
   { year: "2022 — 2024", role: "Senior Engineer", place: "Helix Studio" },
   { year: "2020 — 2022", role: "Fullstack Developer", place: "Nimbus Labs" },
   { year: "2019", role: "B.Sc. Computer Science", place: "Started building for the web" },
+];
+
+const skillGroups = [
+  {
+    icon: Layout,
+    title: "Frontend",
+    items: ["React / Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Remix"],
+  },
+  {
+    icon: Server,
+    title: "Backend",
+    items: ["Node.js", "Python / FastAPI", "Go", "tRPC / GraphQL", "REST APIs", "WebSockets"],
+  },
+  {
+    icon: Database,
+    title: "Data",
+    items: ["PostgreSQL", "Redis", "ClickHouse", "Prisma", "pgvector", "Supabase"],
+  },
+  {
+    icon: Cloud,
+    title: "DevOps & Cloud",
+    items: ["AWS", "Vercel", "Docker", "Terraform", "GitHub Actions", "Cloudflare"],
+  },
+  {
+    icon: Cpu,
+    title: "AI / ML",
+    items: ["OpenAI", "RAG pipelines", "LangChain", "Embeddings", "Agents", "Fine-tuning"],
+  },
+  {
+    icon: PenTool,
+    title: "Design & Craft",
+    items: ["Design systems", "Figma", "Motion design", "Accessibility", "Performance", "SEO"],
+  },
+];
+
+const process = [
+  {
+    n: "01",
+    icon: Search,
+    title: "Discover",
+    desc: "We start with a deep dive into your goals, users, and constraints. I ask hard questions early so we ship the right thing.",
+    bullets: ["Stakeholder interviews", "Technical audit", "Scope & success metrics"],
+  },
+  {
+    n: "02",
+    icon: PenTool,
+    title: "Design",
+    desc: "Wireframes, flows, and a tight design system. Every screen is intentional and aligned to the product strategy.",
+    bullets: ["User flows", "UI in Figma", "Design tokens"],
+  },
+  {
+    n: "03",
+    icon: Wrench,
+    title: "Build",
+    desc: "Production code from day one. Type-safe, tested, reviewable. You see weekly progress on a staging URL.",
+    bullets: ["Weekly demos", "Tested code", "CI/CD from day 1"],
+  },
+  {
+    n: "04",
+    icon: Rocket,
+    title: "Ship & Iterate",
+    desc: "Launch with confidence. Monitoring, feedback loops, and a documented handover so your team can run with it.",
+    bullets: ["Observability", "Documentation", "30-day support"],
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Mal ships work that feels expensive. The best engineer we've hired — fast, thoughtful, and the design taste is rare.",
+    name: "Sarah Chen",
+    role: "CTO @ Helix Studio",
+    avatar: "S",
+    hasVoice: true,
+  },
+  {
+    quote: "He rebuilt our analytics pipeline in six weeks. Queries that took thirty seconds now return in under a hundred milliseconds. Game changer.",
+    name: "Marcus Reid",
+    role: "Head of Engineering @ Nimbus",
+    avatar: "M",
+    hasVoice: true,
+  },
+  {
+    quote: "Rare combination of senior engineering depth and genuine design sensibility. Our app finally feels like a product instead of a prototype.",
+    name: "Aisha Khan",
+    role: "Founder @ Forge",
+    avatar: "A",
+    hasVoice: false,
+  },
+  {
+    quote: "Clear communicator, brutally pragmatic, and absurdly fast. He shipped more in a month than the previous team did in a quarter.",
+    name: "Daniel Ortiz",
+    role: "Product Lead @ Atlas",
+    avatar: "D",
+    hasVoice: true,
+  },
 ];
 
 export default function Index() {
@@ -234,6 +332,53 @@ export default function Index() {
             </motion.div>
           ))}
         </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            to="/projects"
+            className="group inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-mono hover:bg-gold/10 transition"
+          >
+            View all projects
+            <ArrowRight className="w-4 h-4 text-gold group-hover:translate-x-1 transition" />
+          </Link>
+        </div>
+      </section>
+
+      {/* SKILLS */}
+      <section id="skills" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> skills & toolkit
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">03 — what I work with</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {skillGroups.map((g, i) => (
+            <motion.div
+              key={g.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="bento-card p-6 group hover:border-gold/40 transition"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center group-hover:bg-gold/20 transition">
+                  <g.icon className="w-5 h-5 text-gold" />
+                </div>
+                <h3 className="font-mono text-lg font-bold">{g.title}</h3>
+              </div>
+              <ul className="space-y-2">
+                {g.items.map((it) => (
+                  <li key={it} className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
+                    <span className="text-gold">›</span> {it}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* SERVICES */}
@@ -287,22 +432,72 @@ export default function Index() {
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
-        <div className="bento-card p-10 md:p-16 text-center relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg opacity-30" />
-          <div className="relative">
-            <div className="flex justify-center gap-1 mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-gold text-gold" />)}
-            </div>
-            <p className="font-mono text-xl md:text-3xl font-bold max-w-3xl mx-auto leading-snug">
-              "Mal ships work that feels expensive. The best engineer we've hired —
-              fast, thoughtful, and the design taste is rare."
-            </p>
-            <p className="font-mono text-xs text-muted-foreground mt-6">
-              — Sarah Chen, CTO @ Helix Studio
-            </p>
+      {/* PROCESS */}
+      <section id="process" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> how I work
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">05 — process</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+          {/* connecting line */}
+          <div className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+
+          {process.map((step, i) => (
+            <motion.div
+              key={step.n}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bento-card p-6 relative"
+            >
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-11 h-11 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center relative z-10">
+                  <step.icon className="w-5 h-5 text-gold" />
+                </div>
+                <span className="font-mono text-3xl font-bold text-border">{step.n}</span>
+              </div>
+              <h3 className="font-mono text-lg font-bold mb-2">{step.title}</h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">{step.desc}</p>
+              <ul className="space-y-1.5">
+                {step.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-2 font-mono text-[11px] text-muted-foreground">
+                    <CheckCircle2 className="w-3 h-3 text-gold mt-0.5 shrink-0" /> {b}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section id="testimonials" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <div>
+            <h2 className="font-mono text-3xl md:text-5xl font-bold">
+              <span className="text-gold">/</span> kind words
+            </h2>
+            <p className="font-mono text-xs text-muted-foreground mt-2">tap play on the voice cards to hear them</p>
           </div>
+          <p className="font-mono text-xs text-muted-foreground">06 — testimonials</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <VoiceTestimonial {...t} />
+            </motion.div>
+          ))}
         </div>
       </section>
 
