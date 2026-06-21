@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight, Github, Linkedin, Mail, Code2, Sparkles, Server, Database,
-  Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal
+  Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal,
+  Layers, Palette, Rocket, Search, PenTool, Wrench, CheckCircle2, ArrowRight,
+  FileCode, Box, Cloud, GitBranch, Layout
 } from "lucide-react";
 import portrait from "@/assets/mal-portrait.jpg";
 import FloatingNav from "@/components/FloatingNav";
+import VoiceTestimonial from "@/components/VoiceTestimonial";
 import { projects } from "@/data/projects";
 
 const stack = [
@@ -26,6 +29,101 @@ const timeline = [
   { year: "2022 — 2024", role: "Senior Engineer", place: "Helix Studio" },
   { year: "2020 — 2022", role: "Fullstack Developer", place: "Nimbus Labs" },
   { year: "2019", role: "B.Sc. Computer Science", place: "Started building for the web" },
+];
+
+const skillGroups = [
+  {
+    icon: Layout,
+    title: "Frontend",
+    items: ["React / Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Remix"],
+  },
+  {
+    icon: Server,
+    title: "Backend",
+    items: ["Node.js", "Python / FastAPI", "Go", "tRPC / GraphQL", "REST APIs", "WebSockets"],
+  },
+  {
+    icon: Database,
+    title: "Data",
+    items: ["PostgreSQL", "Redis", "ClickHouse", "Prisma", "pgvector", "Supabase"],
+  },
+  {
+    icon: Cloud,
+    title: "DevOps & Cloud",
+    items: ["AWS", "Vercel", "Docker", "Terraform", "GitHub Actions", "Cloudflare"],
+  },
+  {
+    icon: Cpu,
+    title: "AI / ML",
+    items: ["OpenAI", "RAG pipelines", "LangChain", "Embeddings", "Agents", "Fine-tuning"],
+  },
+  {
+    icon: PenTool,
+    title: "Design & Craft",
+    items: ["Design systems", "Figma", "Motion design", "Accessibility", "Performance", "SEO"],
+  },
+];
+
+const process = [
+  {
+    n: "01",
+    icon: Search,
+    title: "Discover",
+    desc: "We start with a deep dive into your goals, users, and constraints. I ask hard questions early so we ship the right thing.",
+    bullets: ["Stakeholder interviews", "Technical audit", "Scope & success metrics"],
+  },
+  {
+    n: "02",
+    icon: PenTool,
+    title: "Design",
+    desc: "Wireframes, flows, and a tight design system. Every screen is intentional and aligned to the product strategy.",
+    bullets: ["User flows", "UI in Figma", "Design tokens"],
+  },
+  {
+    n: "03",
+    icon: Wrench,
+    title: "Build",
+    desc: "Production code from day one. Type-safe, tested, reviewable. You see weekly progress on a staging URL.",
+    bullets: ["Weekly demos", "Tested code", "CI/CD from day 1"],
+  },
+  {
+    n: "04",
+    icon: Rocket,
+    title: "Ship & Iterate",
+    desc: "Launch with confidence. Monitoring, feedback loops, and a documented handover so your team can run with it.",
+    bullets: ["Observability", "Documentation", "30-day support"],
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Mal ships work that feels expensive. The best engineer we've hired — fast, thoughtful, and the design taste is rare.",
+    name: "Sarah Chen",
+    role: "CTO @ Helix Studio",
+    avatar: "S",
+    hasVoice: true,
+  },
+  {
+    quote: "He rebuilt our analytics pipeline in six weeks. Queries that took thirty seconds now return in under a hundred milliseconds. Game changer.",
+    name: "Marcus Reid",
+    role: "Head of Engineering @ Nimbus",
+    avatar: "M",
+    hasVoice: true,
+  },
+  {
+    quote: "Rare combination of senior engineering depth and genuine design sensibility. Our app finally feels like a product instead of a prototype.",
+    name: "Aisha Khan",
+    role: "Founder @ Forge",
+    avatar: "A",
+    hasVoice: false,
+  },
+  {
+    quote: "Clear communicator, brutally pragmatic, and absurdly fast. He shipped more in a month than the previous team did in a quarter.",
+    name: "Daniel Ortiz",
+    role: "Product Lead @ Atlas",
+    avatar: "D",
+    hasVoice: true,
+  },
 ];
 
 export default function Index() {
