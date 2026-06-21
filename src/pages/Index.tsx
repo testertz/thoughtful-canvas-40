@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import {
   ArrowUpRight, Github, Linkedin, Mail, Code2, Sparkles, Server, Database,
   Cpu, Globe, Send, Download, MapPin, Calendar, Coffee, Star, ExternalLink, Terminal,
   Layers, Palette, Rocket, Search, PenTool, Wrench, CheckCircle2, ArrowRight,
-  FileCode, Box, Cloud, GitBranch, Layout
+  FileCode, Box, Cloud, GitBranch, Layout, MessageCircle, Clock, Zap, User, AtSign
 } from "lucide-react";
 import portrait from "@/assets/mal-portrait.jpg";
 import FloatingNav from "@/components/FloatingNav";
@@ -25,10 +26,43 @@ const services = [
 ];
 
 const timeline = [
-  { year: "2024 — Now", role: "Freelance Fullstack Engineer", place: "Remote · Worldwide" },
-  { year: "2022 — 2024", role: "Senior Engineer", place: "Helix Studio" },
-  { year: "2020 — 2022", role: "Fullstack Developer", place: "Nimbus Labs" },
-  { year: "2019", role: "B.Sc. Computer Science", place: "Started building for the web" },
+  {
+    year: "2024 — Now",
+    role: "Freelance Fullstack Engineer",
+    place: "Remote · Worldwide",
+    summary:
+      "Partnering with startups and product teams to design and ship full-stack web apps end-to-end — from architecture and APIs to polished UI, observability and launch. Typical engagements: rebuilding legacy products, shipping AI-powered features, and standing up scalable Next.js + Postgres stacks.",
+  },
+  {
+    year: "2022 — 2024",
+    role: "Senior Engineer",
+    place: "Helix Studio",
+    summary:
+      "Led the rebuild of the core commerce platform on Next.js, tRPC and Postgres. Mentored 4 engineers, owned the design system, and drove performance work that cut LCP by 62% and lifted checkout conversion by 38%.",
+  },
+  {
+    year: "2020 — 2022",
+    role: "Fullstack Developer",
+    place: "Nimbus Labs",
+    summary:
+      "Built data-heavy dashboards and the analytics ingestion pipeline (Node, ClickHouse, Redis) handling millions of events per day. Shipped the first version of the customer-facing API and the billing integration with Stripe.",
+  },
+  {
+    year: "2019",
+    role: "B.Sc. Computer Science",
+    place: "Started building for the web",
+    summary:
+      "Graduated and started freelancing on the side — landing pages, small SaaS MVPs and internal tools. The year I fell in love with shipping.",
+  },
+];
+
+const availability = [
+  { label: "Status", value: "Open for new projects", tone: "good" as const, icon: Zap },
+  { label: "Next slot", value: "Q3 — Q4 2026", tone: "neutral" as const, icon: Calendar },
+  { label: "Hours / week", value: "20 — 40 hrs", tone: "neutral" as const, icon: Clock },
+  { label: "Response time", value: "Within 24 hours", tone: "good" as const, icon: Send },
+  { label: "Engagements", value: "Project · Retainer · Full-time", tone: "neutral" as const, icon: Layers },
+  { label: "Timezone", value: "GMT+1 · flexible overlap", tone: "neutral" as const, icon: Globe },
 ];
 
 const skillGroups = [
@@ -422,13 +456,78 @@ export default function Index() {
         <div className="bento-card p-2 md:p-4">
           <ul className="divide-y divide-border">
             {timeline.map((t) => (
-              <li key={t.year} className="grid grid-cols-12 gap-4 px-4 py-6 items-center hover:bg-gold/5 transition rounded-xl">
-                <div className="col-span-12 md:col-span-3 font-mono text-xs text-gold">{t.year}</div>
-                <div className="col-span-12 md:col-span-6 font-mono text-lg md:text-xl font-bold">{t.role}</div>
-                <div className="col-span-12 md:col-span-3 font-body text-sm text-muted-foreground md:text-right">{t.place}</div>
+              <li key={t.year} className="grid grid-cols-12 gap-4 px-4 py-7 hover:bg-gold/5 transition rounded-xl">
+                <div className="col-span-12 md:col-span-3 font-mono text-xs text-gold pt-1">{t.year}</div>
+                <div className="col-span-12 md:col-span-9 space-y-3">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <h3 className="font-mono text-lg md:text-xl font-bold">{t.role}</h3>
+                    <p className="font-body text-sm text-muted-foreground">{t.place}</p>
+                  </div>
+                  <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed max-w-3xl">
+                    {t.summary}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* AVAILABILITY */}
+      <section id="availability" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> availability
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">— booking window</p>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-5">
+          <div className="bento-card md:col-span-5 p-8 relative overflow-hidden flex flex-col justify-between">
+            <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-gold/10 blur-3xl" />
+            <div className="relative">
+              <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground mb-6">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                accepting projects
+              </div>
+              <p className="font-mono text-4xl md:text-5xl font-bold leading-[1.05] tracking-tighter">
+                <span className="gold-gradient-text">2 slots</span><br />open this quarter.
+              </p>
+              <p className="font-body text-muted-foreground mt-5 max-w-sm leading-relaxed">
+                I take on a small number of engagements at a time so each project gets the depth it deserves. Lock in a slot early — calendars fill up two months out.
+              </p>
+            </div>
+            <a
+              href="#contact"
+              className="relative inline-flex items-center gap-2 mt-8 self-start rounded-full bg-gold text-primary-foreground px-5 py-3 font-mono text-sm font-medium hover:bg-[var(--gold-soft)] transition"
+            >
+              Reserve a slot <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
+            {availability.map((a, i) => (
+              <motion.div
+                key={a.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="bento-card p-5 flex items-start gap-4"
+              >
+                <div className="w-10 h-10 shrink-0 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center">
+                  <a.icon className="w-4 h-4 text-gold" />
+                </div>
+                <div>
+                  <p className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider">{a.label}</p>
+                  <p className="font-mono text-sm md:text-base font-bold mt-1">
+                    {a.tone === "good" && <span className="text-gold">● </span>}
+                    {a.value}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -503,56 +602,64 @@ export default function Index() {
 
       {/* CONTACT */}
       <section id="contact" className="py-32 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> let's build something
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">07 — contact</p>
+        </div>
+
         <div className="grid md:grid-cols-12 gap-5">
-          <div className="md:col-span-7 bento-card p-10 md:p-14 relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold/10 blur-3xl" />
-            <p className="font-mono text-xs text-gold mb-4">05 — let's build something</p>
-            <h2 className="font-mono text-4xl md:text-6xl font-bold leading-[1] tracking-tighter">
-              Have a project<br />in mind<span className="text-gold">?</span>
-            </h2>
-            <p className="font-body text-lg text-muted-foreground mt-6 max-w-md">
-              Whether it's a product, a feature, or a full team — I'd love to hear it.
-              I reply within 24 hours.
-            </p>
+          {/* Intro + WhatsApp + socials */}
+          <div className="md:col-span-5 flex flex-col gap-5">
+            <div className="bento-card p-8 md:p-10 relative overflow-hidden">
+              <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold/10 blur-3xl" />
+              <p className="font-mono text-xs text-gold mb-4">say hi</p>
+              <h3 className="font-mono text-3xl md:text-4xl font-bold leading-[1.05] tracking-tighter">
+                Have a project<br />in mind<span className="text-gold">?</span>
+              </h3>
+              <p className="font-body text-muted-foreground mt-5 leading-relaxed">
+                Drop a message via the form, ping me on WhatsApp, or send an email. I reply within 24 hours.
+              </p>
+            </div>
+
             <a
-              href="mailto:hello@mal.dev"
-              className="inline-flex items-center gap-2 mt-8 rounded-full bg-gold text-primary-foreground px-6 py-3 font-mono font-medium hover:bg-[var(--gold-soft)] transition"
+              href="https://wa.me/15551234567?text=Hi%20Mal%2C%20I%27d%20love%20to%20talk%20about%20a%20project."
+              target="_blank"
+              rel="noreferrer"
+              className="bento-card p-6 flex items-center justify-between group bg-gradient-to-br from-gold/10 to-transparent border-gold/30"
             >
-              hello@mal.dev <Send className="w-4 h-4" />
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-lg bg-gold/15 border border-gold/30 flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-gold" />
+                </div>
+                <div>
+                  <p className="font-mono font-bold">WhatsApp</p>
+                  <p className="font-mono text-xs text-muted-foreground">fastest reply · +1 (555) 123-4567</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
             </a>
+
+            <div className="grid grid-cols-3 gap-3">
+              <a href="mailto:hello@mal.dev" className="bento-card p-4 flex flex-col items-center justify-center gap-2 group">
+                <Mail className="w-5 h-5 text-gold" />
+                <span className="font-mono text-[11px] text-muted-foreground group-hover:text-foreground transition">Email</span>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="bento-card p-4 flex flex-col items-center justify-center gap-2 group">
+                <Github className="w-5 h-5 text-gold" />
+                <span className="font-mono text-[11px] text-muted-foreground group-hover:text-foreground transition">GitHub</span>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="bento-card p-4 flex flex-col items-center justify-center gap-2 group">
+                <Linkedin className="w-5 h-5 text-gold" />
+                <span className="font-mono text-[11px] text-muted-foreground group-hover:text-foreground transition">LinkedIn</span>
+              </a>
+            </div>
           </div>
 
-          <div className="md:col-span-5 flex flex-col gap-5">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="bento-card p-6 flex items-center justify-between group">
-              <div className="flex items-center gap-4">
-                <Github className="w-6 h-6 text-gold" />
-                <div>
-                  <p className="font-mono font-bold">GitHub</p>
-                  <p className="font-mono text-xs text-muted-foreground">@mal</p>
-                </div>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="bento-card p-6 flex items-center justify-between group">
-              <div className="flex items-center gap-4">
-                <Linkedin className="w-6 h-6 text-gold" />
-                <div>
-                  <p className="font-mono font-bold">LinkedIn</p>
-                  <p className="font-mono text-xs text-muted-foreground">/in/mal</p>
-                </div>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-            </a>
-            <a href="mailto:hello@mal.dev" className="bento-card p-6 flex items-center justify-between group">
-              <div className="flex items-center gap-4">
-                <Mail className="w-6 h-6 text-gold" />
-                <div>
-                  <p className="font-mono font-bold">Email</p>
-                  <p className="font-mono text-xs text-muted-foreground">hello@mal.dev</p>
-                </div>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-gold group-hover:rotate-45 transition" />
-            </a>
+          {/* Form */}
+          <div className="md:col-span-7 bento-card p-8 md:p-10">
+            <ContactForm />
           </div>
         </div>
       </section>
@@ -581,5 +688,109 @@ function Stat({ value, label, icon: Icon }: { value: string; label: string; icon
         <p className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider mt-1">{label}</p>
       </div>
     </div>
+  );
+}
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", budget: "", message: "" });
+  const [sending, setSending] = useState(false);
+
+  const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const validate = () => {
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+    if (name.length < 2 || name.length > 100) return "Please enter your name (2–100 chars).";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) return "Please enter a valid email.";
+    if (message.length < 10 || message.length > 1000) return "Message should be 10–1000 characters.";
+    return null;
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const err = validate();
+    if (err) { toast.error(err); return; }
+    setSending(true);
+    const subject = encodeURIComponent(`New project inquiry — ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nBudget: ${form.budget || "—"}\n\n${form.message}`
+    );
+    window.location.href = `mailto:hello@mal.dev?subject=${subject}&body=${body}`;
+    setTimeout(() => {
+      toast.success("Message ready to send — your mail app just opened.");
+      setForm({ name: "", email: "", budget: "", message: "" });
+      setSending(false);
+    }, 400);
+  };
+
+  const sendWhatsApp = () => {
+    const err = validate();
+    if (err) { toast.error(err); return; }
+    const text = encodeURIComponent(
+      `Hi Mal — I'm ${form.name} (${form.email}).\nBudget: ${form.budget || "—"}\n\n${form.message}`
+    );
+    window.open(`https://wa.me/15551234567?text=${text}`, "_blank", "noopener");
+  };
+
+  const field =
+    "w-full bg-background/60 border border-border rounded-lg px-4 py-3 font-mono text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold/60 focus:ring-1 focus:ring-gold/30 transition";
+
+  return (
+    <form onSubmit={onSubmit} className="flex flex-col gap-5">
+      <div>
+        <p className="font-mono text-xs text-gold mb-2">▸ start the conversation</p>
+        <h3 className="font-mono text-2xl md:text-3xl font-bold tracking-tight">
+          Tell me about your project
+        </h3>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        <label className="block">
+          <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
+            <User className="w-3 h-3 text-gold" /> Name
+          </span>
+          <input type="text" value={form.name} onChange={update("name")} maxLength={100} required placeholder="Ada Lovelace" className={field} />
+        </label>
+        <label className="block">
+          <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
+            <AtSign className="w-3 h-3 text-gold" /> Email
+          </span>
+          <input type="email" value={form.email} onChange={update("email")} maxLength={255} required placeholder="you@company.com" className={field} />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider mb-2 block">Budget (optional)</span>
+        <select value={form.budget} onChange={update("budget")} className={field}>
+          <option value="">Select a range…</option>
+          <option value="< $5k">Less than $5k</option>
+          <option value="$5k — $15k">$5k — $15k</option>
+          <option value="$15k — $40k">$15k — $40k</option>
+          <option value="$40k+">$40k+</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </label>
+
+      <label className="block">
+        <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider mb-2 block">Project details</span>
+        <textarea value={form.message} onChange={update("message")} rows={5} maxLength={1000} required
+          placeholder="What are you building, and what does success look like?"
+          className={`${field} resize-none`} />
+        <span className="block mt-1 text-right font-mono text-[10px] text-muted-foreground">{form.message.length}/1000</span>
+      </label>
+
+      <div className="flex flex-wrap gap-3">
+        <button type="submit" disabled={sending}
+          className="inline-flex items-center gap-2 rounded-full bg-gold text-primary-foreground px-6 py-3 font-mono text-sm font-medium hover:bg-[var(--gold-soft)] transition disabled:opacity-60">
+          {sending ? "Sending…" : "Send message"} <Send className="w-4 h-4" />
+        </button>
+        <button type="button" onClick={sendWhatsApp}
+          className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 font-mono text-sm hover:bg-gold/10 transition">
+          <MessageCircle className="w-4 h-4 text-gold" /> Send via WhatsApp
+        </button>
+      </div>
+    </form>
   );
 }
