@@ -26,10 +26,43 @@ const services = [
 ];
 
 const timeline = [
-  { year: "2024 — Now", role: "Freelance Fullstack Engineer", place: "Remote · Worldwide" },
-  { year: "2022 — 2024", role: "Senior Engineer", place: "Helix Studio" },
-  { year: "2020 — 2022", role: "Fullstack Developer", place: "Nimbus Labs" },
-  { year: "2019", role: "B.Sc. Computer Science", place: "Started building for the web" },
+  {
+    year: "2024 — Now",
+    role: "Freelance Fullstack Engineer",
+    place: "Remote · Worldwide",
+    summary:
+      "Partnering with startups and product teams to design and ship full-stack web apps end-to-end — from architecture and APIs to polished UI, observability and launch. Typical engagements: rebuilding legacy products, shipping AI-powered features, and standing up scalable Next.js + Postgres stacks.",
+  },
+  {
+    year: "2022 — 2024",
+    role: "Senior Engineer",
+    place: "Helix Studio",
+    summary:
+      "Led the rebuild of the core commerce platform on Next.js, tRPC and Postgres. Mentored 4 engineers, owned the design system, and drove performance work that cut LCP by 62% and lifted checkout conversion by 38%.",
+  },
+  {
+    year: "2020 — 2022",
+    role: "Fullstack Developer",
+    place: "Nimbus Labs",
+    summary:
+      "Built data-heavy dashboards and the analytics ingestion pipeline (Node, ClickHouse, Redis) handling millions of events per day. Shipped the first version of the customer-facing API and the billing integration with Stripe.",
+  },
+  {
+    year: "2019",
+    role: "B.Sc. Computer Science",
+    place: "Started building for the web",
+    summary:
+      "Graduated and started freelancing on the side — landing pages, small SaaS MVPs and internal tools. The year I fell in love with shipping.",
+  },
+];
+
+const availability = [
+  { label: "Status", value: "Open for new projects", tone: "good" as const, icon: Zap },
+  { label: "Next slot", value: "Q3 — Q4 2026", tone: "neutral" as const, icon: Calendar },
+  { label: "Hours / week", value: "20 — 40 hrs", tone: "neutral" as const, icon: Clock },
+  { label: "Response time", value: "Within 24 hours", tone: "good" as const, icon: Send },
+  { label: "Engagements", value: "Project · Retainer · Full-time", tone: "neutral" as const, icon: Layers },
+  { label: "Timezone", value: "GMT+1 · flexible overlap", tone: "neutral" as const, icon: Globe },
 ];
 
 const skillGroups = [
