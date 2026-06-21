@@ -456,13 +456,78 @@ export default function Index() {
         <div className="bento-card p-2 md:p-4">
           <ul className="divide-y divide-border">
             {timeline.map((t) => (
-              <li key={t.year} className="grid grid-cols-12 gap-4 px-4 py-6 items-center hover:bg-gold/5 transition rounded-xl">
-                <div className="col-span-12 md:col-span-3 font-mono text-xs text-gold">{t.year}</div>
-                <div className="col-span-12 md:col-span-6 font-mono text-lg md:text-xl font-bold">{t.role}</div>
-                <div className="col-span-12 md:col-span-3 font-body text-sm text-muted-foreground md:text-right">{t.place}</div>
+              <li key={t.year} className="grid grid-cols-12 gap-4 px-4 py-7 hover:bg-gold/5 transition rounded-xl">
+                <div className="col-span-12 md:col-span-3 font-mono text-xs text-gold pt-1">{t.year}</div>
+                <div className="col-span-12 md:col-span-9 space-y-3">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <h3 className="font-mono text-lg md:text-xl font-bold">{t.role}</h3>
+                    <p className="font-body text-sm text-muted-foreground">{t.place}</p>
+                  </div>
+                  <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed max-w-3xl">
+                    {t.summary}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* AVAILABILITY */}
+      <section id="availability" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> availability
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">— booking window</p>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-5">
+          <div className="bento-card md:col-span-5 p-8 relative overflow-hidden flex flex-col justify-between">
+            <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-gold/10 blur-3xl" />
+            <div className="relative">
+              <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground mb-6">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                accepting projects
+              </div>
+              <p className="font-mono text-4xl md:text-5xl font-bold leading-[1.05] tracking-tighter">
+                <span className="gold-gradient-text">2 slots</span><br />open this quarter.
+              </p>
+              <p className="font-body text-muted-foreground mt-5 max-w-sm leading-relaxed">
+                I take on a small number of engagements at a time so each project gets the depth it deserves. Lock in a slot early — calendars fill up two months out.
+              </p>
+            </div>
+            <a
+              href="#contact"
+              className="relative inline-flex items-center gap-2 mt-8 self-start rounded-full bg-gold text-primary-foreground px-5 py-3 font-mono text-sm font-medium hover:bg-[var(--gold-soft)] transition"
+            >
+              Reserve a slot <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
+            {availability.map((a, i) => (
+              <motion.div
+                key={a.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="bento-card p-5 flex items-start gap-4"
+              >
+                <div className="w-10 h-10 shrink-0 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center">
+                  <a.icon className="w-4 h-4 text-gold" />
+                </div>
+                <div>
+                  <p className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider">{a.label}</p>
+                  <p className="font-mono text-sm md:text-base font-bold mt-1">
+                    {a.tone === "good" && <span className="text-gold">● </span>}
+                    {a.value}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
