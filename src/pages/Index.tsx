@@ -332,6 +332,53 @@ export default function Index() {
             </motion.div>
           ))}
         </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            to="/projects"
+            className="group inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-mono hover:bg-gold/10 transition"
+          >
+            View all projects
+            <ArrowRight className="w-4 h-4 text-gold group-hover:translate-x-1 transition" />
+          </Link>
+        </div>
+      </section>
+
+      {/* SKILLS */}
+      <section id="skills" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> skills & toolkit
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">03 — what I work with</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {skillGroups.map((g, i) => (
+            <motion.div
+              key={g.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="bento-card p-6 group hover:border-gold/40 transition"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center group-hover:bg-gold/20 transition">
+                  <g.icon className="w-5 h-5 text-gold" />
+                </div>
+                <h3 className="font-mono text-lg font-bold">{g.title}</h3>
+              </div>
+              <ul className="space-y-2">
+                {g.items.map((it) => (
+                  <li key={it} className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
+                    <span className="text-gold">›</span> {it}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* SERVICES */}
@@ -385,22 +432,72 @@ export default function Index() {
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
-        <div className="bento-card p-10 md:p-16 text-center relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg opacity-30" />
-          <div className="relative">
-            <div className="flex justify-center gap-1 mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-gold text-gold" />)}
-            </div>
-            <p className="font-mono text-xl md:text-3xl font-bold max-w-3xl mx-auto leading-snug">
-              "Mal ships work that feels expensive. The best engineer we've hired —
-              fast, thoughtful, and the design taste is rare."
-            </p>
-            <p className="font-mono text-xs text-muted-foreground mt-6">
-              — Sarah Chen, CTO @ Helix Studio
-            </p>
+      {/* PROCESS */}
+      <section id="process" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> how I work
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">05 — process</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+          {/* connecting line */}
+          <div className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+
+          {process.map((step, i) => (
+            <motion.div
+              key={step.n}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bento-card p-6 relative"
+            >
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-11 h-11 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center relative z-10">
+                  <step.icon className="w-5 h-5 text-gold" />
+                </div>
+                <span className="font-mono text-3xl font-bold text-border">{step.n}</span>
+              </div>
+              <h3 className="font-mono text-lg font-bold mb-2">{step.title}</h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">{step.desc}</p>
+              <ul className="space-y-1.5">
+                {step.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-2 font-mono text-[11px] text-muted-foreground">
+                    <CheckCircle2 className="w-3 h-3 text-gold mt-0.5 shrink-0" /> {b}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section id="testimonials" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+          <div>
+            <h2 className="font-mono text-3xl md:text-5xl font-bold">
+              <span className="text-gold">/</span> kind words
+            </h2>
+            <p className="font-mono text-xs text-muted-foreground mt-2">tap play on the voice cards to hear them</p>
           </div>
+          <p className="font-mono text-xs text-muted-foreground">06 — testimonials</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <VoiceTestimonial {...t} />
+            </motion.div>
+          ))}
         </div>
       </section>
 
