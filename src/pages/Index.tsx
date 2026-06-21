@@ -690,3 +690,107 @@ function Stat({ value, label, icon: Icon }: { value: string; label: string; icon
     </div>
   );
 }
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", budget: "", message: "" });
+  const [sending, setSending] = useState(false);
+
+  const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const validate = () => {
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+    if (name.length < 2 || name.length > 100) return "Please enter your name (2–100 chars).";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) return "Please enter a valid email.";
+    if (message.length < 10 || message.length > 1000) return "Message should be 10–1000 characters.";
+    return null;
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const err = validate();
+    if (err) { toast.error(err); return; }
+    setSending(true);
+    const subject = encodeURIComponent(`New project inquiry — ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nBudget: ${form.budget || "—"}\n\n${form.message}`
+    );
+    window.location.href = `mailto:hello@mal.dev?subject=${subject}&body=${body}`;
+    setTimeout(() => {
+      toast.success("Message ready to send — your mail app just opened.");
+      setForm({ name: "", email: "", budget: "", message: "" });
+      setSending(false);
+    }, 400);
+  };
+
+  const sendWhatsApp = () => {
+    const err = validate();
+    if (err) { toast.error(err); return; }
+    const text = encodeURIComponent(
+      `Hi Mal — I'm ${form.name} (${form.email}).\nBudget: ${form.budget || "—"}\n\n${form.message}`
+    );
+    window.open(`https://wa.me/15551234567?text=${text}`, "_blank", "noopener");
+  };
+
+  const field =
+    "w-full bg-background/60 border border-border rounded-lg px-4 py-3 font-mono text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold/60 focus:ring-1 focus:ring-gold/30 transition";
+
+  return (
+    <form onSubmit={onSubmit} className="flex flex-col gap-5">
+      <div>
+        <p className="font-mono text-xs text-gold mb-2">▸ start the conversation</p>
+        <h3 className="font-mono text-2xl md:text-3xl font-bold tracking-tight">
+          Tell me about your project
+        </h3>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        <label className="block">
+          <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
+            <User className="w-3 h-3 text-gold" /> Name
+          </span>
+          <input type="text" value={form.name} onChange={update("name")} maxLength={100} required placeholder="Ada Lovelace" className={field} />
+        </label>
+        <label className="block">
+          <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
+            <AtSign className="w-3 h-3 text-gold" /> Email
+          </span>
+          <input type="email" value={form.email} onChange={update("email")} maxLength={255} required placeholder="you@company.com" className={field} />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider mb-2 block">Budget (optional)</span>
+        <select value={form.budget} onChange={update("budget")} className={field}>
+          <option value="">Select a range…</option>
+          <option value="< $5k">Less than $5k</option>
+          <option value="$5k — $15k">$5k — $15k</option>
+          <option value="$15k — $40k">$15k — $40k</option>
+          <option value="$40k+">$40k+</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </label>
+
+      <label className="block">
+        <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider mb-2 block">Project details</span>
+        <textarea value={form.message} onChange={update("message")} rows={5} maxLength={1000} required
+          placeholder="What are you building, and what does success look like?"
+          className={`${field} resize-none`} />
+        <span className="block mt-1 text-right font-mono text-[10px] text-muted-foreground">{form.message.length}/1000</span>
+      </label>
+
+      <div className="flex flex-wrap gap-3">
+        <button type="submit" disabled={sending}
+          className="inline-flex items-center gap-2 rounded-full bg-gold text-primary-foreground px-6 py-3 font-mono text-sm font-medium hover:bg-[var(--gold-soft)] transition disabled:opacity-60">
+          {sending ? "Sending…" : "Send message"} <Send className="w-4 h-4" />
+        </button>
+        <button type="button" onClick={sendWhatsApp}
+          className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 font-mono text-sm hover:bg-gold/10 transition">
+          <MessageCircle className="w-4 h-4 text-gold" /> Send via WhatsApp
+        </button>
+      </div>
+    </form>
+  );
+}
