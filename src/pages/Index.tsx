@@ -160,6 +160,86 @@ const testimonials = [
   },
 ];
 
+const pricing = [
+  {
+    name: "Landing & Marketing Site",
+    tagline: "Brochure · Launch · Portfolio",
+    price: "$1,500",
+    suffix: "starting",
+    timeline: "1 — 2 weeks",
+    desc: "A polished, fast-loading single-page or small multi-page site to launch your product, agency, or personal brand. Pixel-perfect, animated, and SEO-ready.",
+    bestFor: "Founders, freelancers, agencies, product launches",
+    features: [
+      "Up to 5 custom-designed pages",
+      "Responsive across all devices",
+      "Lighthouse 95+ performance",
+      "SEO + meta + Open Graph",
+      "Contact form & analytics",
+      "Deployed on Vercel / Netlify",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Full Web Application",
+    tagline: "SaaS · Dashboard · Marketplace",
+    price: "$6,000",
+    suffix: "starting",
+    timeline: "4 — 8 weeks",
+    desc: "End-to-end product builds with authentication, database, dashboards, payments, and admin panels. Production-ready code your team can extend.",
+    bestFor: "Startups, MVPs, internal tools, SaaS platforms",
+    features: [
+      "Custom UI + design system",
+      "Auth, roles, and permissions",
+      "Database + REST/GraphQL API",
+      "Payments (Stripe / Paddle)",
+      "Admin dashboard",
+      "CI/CD, tests, monitoring",
+      "Handover docs + 30 days support",
+    ],
+    highlight: true,
+    badge: "Most popular",
+  },
+  {
+    name: "AI-Powered Product",
+    tagline: "LLM · RAG · Agents · Automation",
+    price: "$9,500",
+    suffix: "starting",
+    timeline: "6 — 10 weeks",
+    desc: "AI-first apps that ship, not demos. Chatbots, copilots, document Q&A, semantic search, agents that act on your data and APIs.",
+    bestFor: "AI startups, B2B tooling, knowledge platforms",
+    features: [
+      "RAG pipeline + vector store",
+      "Custom prompts & evals",
+      "Streaming chat UI",
+      "Multi-step agents & tools",
+      "Usage limits & billing",
+      "Observability + logs",
+      "Model-provider agnostic",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Retainer & Ongoing",
+    tagline: "Monthly · Part-time CTO",
+    price: "$3,800",
+    suffix: "/ month",
+    timeline: "Rolling monthly",
+    desc: "Dedicated weekly hours for evolving products — new features, refactors, architecture decisions, hiring, and code reviews.",
+    bestFor: "Funded startups, growing teams, post-launch products",
+    features: [
+      "20 hrs/week dedicated time",
+      "Weekly syncs + roadmap",
+      "Architecture & code reviews",
+      "Pair with your team",
+      "Slack / WhatsApp access",
+      "Pause anytime",
+    ],
+    highlight: false,
+  },
+];
+
+const _placeholder = [
+
 export default function Index() {
   const [time, setTime] = useState("");
 
