@@ -160,6 +160,85 @@ const testimonials = [
   },
 ];
 
+const pricing = [
+  {
+    name: "Landing & Marketing Site",
+    tagline: "Brochure · Launch · Portfolio",
+    price: "$1,500",
+    suffix: "starting",
+    timeline: "1 — 2 weeks",
+    desc: "A polished, fast-loading single-page or small multi-page site to launch your product, agency, or personal brand. Pixel-perfect, animated, and SEO-ready.",
+    bestFor: "Founders, freelancers, agencies, product launches",
+    features: [
+      "Up to 5 custom-designed pages",
+      "Responsive across all devices",
+      "Lighthouse 95+ performance",
+      "SEO + meta + Open Graph",
+      "Contact form & analytics",
+      "Deployed on Vercel / Netlify",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Full Web Application",
+    tagline: "SaaS · Dashboard · Marketplace",
+    price: "$6,000",
+    suffix: "starting",
+    timeline: "4 — 8 weeks",
+    desc: "End-to-end product builds with authentication, database, dashboards, payments, and admin panels. Production-ready code your team can extend.",
+    bestFor: "Startups, MVPs, internal tools, SaaS platforms",
+    features: [
+      "Custom UI + design system",
+      "Auth, roles, and permissions",
+      "Database + REST/GraphQL API",
+      "Payments (Stripe / Paddle)",
+      "Admin dashboard",
+      "CI/CD, tests, monitoring",
+      "Handover docs + 30 days support",
+    ],
+    highlight: true,
+    badge: "Most popular",
+  },
+  {
+    name: "AI-Powered Product",
+    tagline: "LLM · RAG · Agents · Automation",
+    price: "$9,500",
+    suffix: "starting",
+    timeline: "6 — 10 weeks",
+    desc: "AI-first apps that ship, not demos. Chatbots, copilots, document Q&A, semantic search, agents that act on your data and APIs.",
+    bestFor: "AI startups, B2B tooling, knowledge platforms",
+    features: [
+      "RAG pipeline + vector store",
+      "Custom prompts & evals",
+      "Streaming chat UI",
+      "Multi-step agents & tools",
+      "Usage limits & billing",
+      "Observability + logs",
+      "Model-provider agnostic",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Retainer & Ongoing",
+    tagline: "Monthly · Part-time CTO",
+    price: "$3,800",
+    suffix: "/ month",
+    timeline: "Rolling monthly",
+    desc: "Dedicated weekly hours for evolving products — new features, refactors, architecture decisions, hiring, and code reviews.",
+    bestFor: "Funded startups, growing teams, post-launch products",
+    features: [
+      "20 hrs/week dedicated time",
+      "Weekly syncs + roadmap",
+      "Architecture & code reviews",
+      "Pair with your team",
+      "Slack / WhatsApp access",
+      "Pause anytime",
+    ],
+    highlight: false,
+  },
+];
+
+
 export default function Index() {
   const [time, setTime] = useState("");
 
@@ -573,8 +652,90 @@ export default function Index() {
         </div>
       </section>
 
+      {/* PRICING */}
+      <section id="pricing" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-4 flex-wrap gap-4">
+          <h2 className="font-mono text-3xl md:text-5xl font-bold">
+            <span className="text-gold">/</span> pricing
+          </h2>
+          <p className="font-mono text-xs text-muted-foreground">06 — investment</p>
+        </div>
+        <p className="font-body text-muted-foreground max-w-2xl mb-10 leading-relaxed">
+          Transparent, fixed-scope pricing for the most common engagements. Every project starts with a free 30-min call so we can scope it properly — final quote is always in writing before we begin.
+        </p>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {pricing.map((tier, i) => (
+            <motion.div
+              key={tier.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className={`bento-card p-6 relative flex flex-col ${
+                tier.highlight ? "border-gold/60 bg-gradient-to-br from-gold/[0.06] to-transparent" : ""
+              }`}
+            >
+              {tier.highlight && (
+                <span className="absolute -top-3 left-6 px-3 py-1 rounded-full bg-gold text-primary-foreground font-mono text-[10px] uppercase tracking-wider font-bold">
+                  {tier.badge}
+                </span>
+              )}
+
+              <div className="mb-5">
+                <p className="font-mono text-[11px] text-gold uppercase tracking-wider mb-2">{tier.tagline}</p>
+                <h3 className="font-mono text-xl font-bold leading-tight">{tier.name}</h3>
+              </div>
+
+              <p className="font-body text-sm text-muted-foreground leading-relaxed mb-5">
+                {tier.desc}
+              </p>
+
+              <div className="mb-5 pb-5 border-b border-border/60">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-mono text-3xl font-bold gold-gradient-text">{tier.price}</span>
+                  <span className="font-mono text-xs text-muted-foreground">{tier.suffix}</span>
+                </div>
+                <p className="font-mono text-[11px] text-muted-foreground mt-2">
+                  <Clock className="w-3 h-3 inline text-gold mr-1" /> {tier.timeline}
+                </p>
+              </div>
+
+              <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider mb-2">
+                Best for
+              </p>
+              <p className="font-body text-xs text-foreground/80 mb-5">{tier.bestFor}</p>
+
+              <ul className="space-y-2 mb-6 flex-1">
+                {tier.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 font-mono text-[11px] text-muted-foreground">
+                    <CheckCircle2 className="w-3 h-3 text-gold mt-0.5 shrink-0" /> {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#contact"
+                className={`inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 font-mono text-xs font-medium transition ${
+                  tier.highlight
+                    ? "bg-gold text-primary-foreground hover:bg-[var(--gold-soft)]"
+                    : "border border-gold/40 text-foreground hover:bg-gold/10"
+                }`}
+              >
+                Start a project <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </motion.div>
+          ))}
+        </div>
+
+        <p className="font-mono text-xs text-muted-foreground text-center mt-8">
+          Need something custom or larger? <a href="#contact" className="text-gold hover:underline">Get in touch</a> for a tailored quote.
+        </p>
+      </section>
+
       {/* TESTIMONIALS */}
       <section id="testimonials" className="py-24 max-w-7xl mx-auto px-6">
+
         <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
           <div>
             <h2 className="font-mono text-3xl md:text-5xl font-bold">

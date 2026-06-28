@@ -47,6 +47,34 @@
   }
 
   .dark { color-scheme: dark; }
+
+  html.light {
+    --color-background: oklch(98% 0.005 85);
+    --color-foreground: oklch(18% 0.01 60);
+    --color-card: oklch(100% 0 0);
+    --color-card-foreground: oklch(18% 0.01 60);
+    --color-popover: oklch(100% 0 0);
+    --color-popover-foreground: oklch(18% 0.01 60);
+    --color-primary: oklch(62% 0.13 75);
+    --color-primary-foreground: oklch(98% 0.005 85);
+    --color-secondary: oklch(94% 0.01 85);
+    --color-secondary-foreground: oklch(18% 0.01 60);
+    --color-muted: oklch(95% 0.01 85);
+    --color-muted-foreground: oklch(42% 0.02 70);
+    --color-accent: oklch(72% 0.13 80);
+    --color-accent-foreground: oklch(18% 0.01 60);
+    --color-border: oklch(88% 0.01 85);
+    --color-input: oklch(94% 0.01 85);
+    --color-ring: oklch(62% 0.13 75);
+    --gold: #a8862f;
+    --gold-soft: #c9a84c;
+    color-scheme: light;
+  }
+  html.light body {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(168,134,47,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(168,134,47,0.06), transparent 60%);
+  }
 }
 
 @layer base {
