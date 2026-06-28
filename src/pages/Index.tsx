@@ -238,7 +238,6 @@ const pricing = [
   },
 ];
 
-const _placeholder = [
 
 export default function Index() {
   const [time, setTime] = useState("");
