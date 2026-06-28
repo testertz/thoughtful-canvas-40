@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
   { href: "#work", label: "work" },
   { href: "#skills", label: "skills" },
+  { href: "#pricing", label: "pricing" },
   { href: "#process", label: "process" },
   { href: "#about", label: "about" },
-  { href: "#availability", label: "availability" },
   { href: "#contact", label: "contact" },
 ];
 
@@ -106,8 +107,9 @@ export default function FloatingNav() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="fixed top-5 right-5 z-50 hidden md:block"
+        className="fixed top-5 right-5 z-50 hidden md:flex items-center gap-2"
       >
+        <ThemeToggle />
         <a
           href={hrefFor("#contact")}
           className="group inline-flex items-center gap-2 rounded-full bg-gold text-primary-foreground px-4 py-2 text-sm font-mono font-medium hover:bg-[var(--gold-soft)] transition shadow-lg shadow-gold/20"
@@ -115,6 +117,11 @@ export default function FloatingNav() {
           Hire me <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition" />
         </a>
       </motion.div>
+
+      {/* Mobile theme toggle */}
+      <div className="md:hidden fixed top-5 right-[4.25rem] z-50">
+        <ThemeToggle />
+      </div>
 
       {/* Mobile floating toggle */}
       <button
