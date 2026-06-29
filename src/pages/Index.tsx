@@ -655,6 +655,11 @@ export default function Index() {
         <p className="font-mono text-xs text-muted-foreground text-center mt-8">
           Need something custom or larger? <a href="#contact" className="text-gold hover:underline">Get in touch</a> for a tailored quote.
         </p>
+        <div className="text-center mt-4">
+          <Link to="/pricing" className="inline-flex items-center gap-2 font-mono text-sm text-gold hover:underline transition">
+            View full comparison <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
       </section>
 
       {/* TESTIMONIALS */}
