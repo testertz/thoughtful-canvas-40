@@ -12,6 +12,7 @@ import portrait from "@/assets/mal-portrait.jpg";
 import FloatingNav from "@/components/FloatingNav";
 import VoiceTestimonial from "@/components/VoiceTestimonial";
 import { projects } from "@/data/projects";
+import { pricing } from "@/data/pricing";
 
 const stack = [
   "TypeScript", "React", "Next.js", "Node.js", "Python", "PostgreSQL",
