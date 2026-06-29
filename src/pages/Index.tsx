@@ -161,7 +161,6 @@ const testimonials = [
   },
 ];
 
-import { pricing } from "@/data/pricing";
 
 
 export default function Index() {
