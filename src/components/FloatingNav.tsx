@@ -7,7 +7,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 const links = [
   { href: "#work", label: "work" },
   { href: "#skills", label: "skills" },
-  { href: "#pricing", label: "pricing" },
+  { href: "/pricing", label: "pricing" },
   { href: "#process", label: "process" },
   { href: "#about", label: "about" },
   { href: "#contact", label: "contact" },
@@ -41,7 +41,10 @@ export default function FloatingNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [onHome]);
 
-  const hrefFor = (h: string) => (onHome ? h : `/${h}`);
+  const hrefFor = (h: string) => {
+    if (h.startsWith("/")) return h;
+    return onHome ? h : `/${h}`;
+  };
 
   return (
     <>
@@ -77,11 +80,15 @@ export default function FloatingNav() {
         >
           <span className="absolute inset-0 rounded-full bg-gradient-to-r from-gold/10 via-transparent to-gold/10 pointer-events-none" />
           {links.map((l) => {
-            const isActive = onHome && active === l.href.slice(1);
+            const isActive = onHome && active === l.href.replace(/^\//, "");
+            const href = hrefFor(l.href);
+            const isPageLink = l.href.startsWith("/");
+            const LinkOrA = isPageLink ? Link : "a";
             return (
-              <a
+              <LinkOrA
                 key={l.href}
-                href={hrefFor(l.href)}
+                to={isPageLink ? href : undefined}
+                href={!isPageLink ? href : undefined}
                 className={`relative px-4 py-1.5 text-sm font-mono rounded-full transition ${
                   isActive
                     ? "text-primary-foreground"
@@ -96,7 +103,7 @@ export default function FloatingNav() {
                   />
                 )}
                 <span className="relative z-10">{l.label}</span>
-              </a>
+              </LinkOrA>
             );
           })}
         </div>
