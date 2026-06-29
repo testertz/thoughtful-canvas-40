@@ -41,7 +41,10 @@ export default function FloatingNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [onHome]);
 
-  const hrefFor = (h: string) => (onHome ? h : `/${h}`);
+  const hrefFor = (h: string) => {
+    if (h.startsWith("/")) return h;
+    return onHome ? h : `/${h}`;
+  };
 
   return (
     <>
